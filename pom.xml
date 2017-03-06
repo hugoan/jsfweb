@@ -4,7 +4,7 @@
 	<groupId>br.com.jsf</groupId>
 	<artifactId>jsf-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging> 
+	<packaging>war</packaging>
 	<name>JSF-Web</name>
 
 	<properties>
@@ -36,6 +36,24 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+
+		<!-- Hibernate -->
+		 <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.8.Final</version>
+        </dependency>
+
+		<!-- Connector MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+
+
+
+
 
 
 
