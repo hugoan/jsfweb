@@ -16,6 +16,11 @@ import br.com.jsfweb.model.Livro;
 public class AutorBean {
 
 	private Autor autor = new Autor();
+	private Long autorId;
+
+	public void carregarAutorPelaId() {
+		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+	}
 
 	public Autor getAutor() {
 		return autor;
@@ -55,5 +60,13 @@ public class AutorBean {
 
 	public void alterarAutor(Autor autor) {
 		this.autor = autor;
+	}
+
+	public void setAutorId(Long autorId) {
+		this.autorId = autorId;
+	}
+
+	public Long getAutorId() {
+		return autorId;
 	}
 }
