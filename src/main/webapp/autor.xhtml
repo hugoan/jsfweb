@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
@@ -13,37 +14,33 @@
 	</f:metadata>
 
 	<ui:define name="titulo">
-		Novo Autor
+		<p:outputPanel>Novo Autor</p:outputPanel>
 	</ui:define>
 
 	<ui:define name="conteudo">
 
 		<h:form id="autor">
-			<fieldset>
-				<legend>Dados do Autor</legend>
+			<p:fieldset legend="Dados do Autor">
+				
 				<h:panelGrid columns="3">
 
-					<h:outputLabel value="Nome:" for="nome" />
-					<h:inputText id="nome" value="#{autorBean.autor.nome}"
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{autorBean.autor.nome}"
 						required="true">
 						<f:validateLength minimum="5" />
 						<f:ajax event="blur" render="messageNome" />
-					</h:inputText>
+					</p:inputText>
 
-					<h:message for="nome" />
-					<h:outputLabel value="Email:" for="email" />
-					<h:inputText id="email" value="#{autorBean.autor.email}"
+					<p:message for="nome" />
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{autorBean.autor.email}"
 						required="true">
 						<f:passThroughAttribute name="type" value="email" />
-					</h:inputText>
+					</p:inputText>
 
-					<h:message for="email" id="messageEmail" />
+					<p:message for="email" id="messageEmail" />
 
-					<h:commandButton value="Gravar" action="#{autorBean.gravar}">
-<!-- 						<f:ajax execute="@form" -->
-<!-- 							render="@form :formTabelaAutores:tabelaAutores" /> --> 
-<!-- Para a validação HTML 5 ocorrer, o botão que faz a requisição não pode estar utilizando AJAX. -->
-					</h:commandButton>
+					<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutores" />
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
