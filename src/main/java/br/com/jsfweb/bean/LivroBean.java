@@ -26,6 +26,8 @@ public class LivroBean implements Serializable {
 	Livro livro = new Livro();
 	private Long autorId;
 
+	private List<Livro> livros;
+
 	public void gravar() {
 		System.out.println("Gravando livro " + livro.getTitulo());
 
@@ -34,10 +36,12 @@ public class LivroBean implements Serializable {
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 		}
 
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		if (this.livro.getId() == null) {
-			new DAO<Livro>(Livro.class).adiciona(this.livro);
+			dao.adiciona(this.livro);
+			this.livros = dao.listaTodos();
 		} else {
-			new DAO<Livro>(Livro.class).atualiza(this.livro);
+			dao.atualiza(this.livro);
 		}
 	}
 
@@ -72,7 +76,11 @@ public class LivroBean implements Serializable {
 	}
 
 	public List<Livro> getLivros() {
-		return new DAO<Livro>(Livro.class).listaTodos();
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
+		if (this.livros == null) {
+			this.livros = dao.listaTodos();
+		}
+		return livros;
 	}
 
 	public String formAutor() {

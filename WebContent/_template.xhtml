@@ -1,25 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head />
 <h:body>
 	<div id="cabecalho">
 		<h:graphicImage library="img" name="logo.png" />
-		
+
+		<p:growl id="messages" showDetail="true" autoUpdate="true" />
+
 		<h:form rendered="#{usuarioLogado != null}">
-			<h:commandLink value="Logout" action="#{loginBean.deslogar}"/>
+
+			<p:menuButton value="Menu">
+				<p:menuitem value="Livros" action="livro?faces-redirect=true" icon="ui-icon-pencil" />
+				<p:menuitem value="Autores" action="autor?faces-redirect=true" icon="ui-icon-pencil" />
+				<p:menuitem value="Vendas" action="vendas?faces-redirect=true" icon="ui-icon-image" />
+				<p:separator />
+				<p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="ui-icon-signout" />
+			</p:menuButton>
 		</h:form>
-		<h1> <ui:insert name="titulo"></ui:insert> </h1>
+		
+		<h1>
+			<ui:insert name="titulo"></ui:insert>
+		</h1>
 	</div>
 
 	<div id="conteudo">
-		<ui:insert name="conteudo"> </ui:insert>
+		<ui:insert name="conteudo">
+		</ui:insert>
 	</div>
-	
+
 	<div id="rodape">
-		 "copyright 2012"
+		"copyright 2012"
 		<ui:insert name="textoRodape">
 		</ui:insert>
 	</div>
