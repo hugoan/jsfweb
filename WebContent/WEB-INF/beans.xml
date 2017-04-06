@@ -1,0 +1,6 @@
+<!-- Configuração do Necessária para subir o CDI -->
+<beans>
+	<interceptors>
+		<class>br.com.jsfweb.tx.GerenciadorDeTransacao</class>
+	</interceptors>
+</beans>

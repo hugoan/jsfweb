@@ -1,17 +1,21 @@
 package br.com.jsfweb.bean;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import br.com.jsfweb.dao.UsuarioDAO;
 import br.com.jsfweb.model.Usuario;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class loginBean {
+public class loginBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Usuario usuario = new Usuario();
 
 	public Usuario getUsuario() {
