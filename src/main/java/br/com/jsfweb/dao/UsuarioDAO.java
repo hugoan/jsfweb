@@ -1,17 +1,25 @@
 package br.com.jsfweb.dao;
 
+import java.io.Serializable;
+
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.jsfweb.model.Usuario;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements Serializable{
 
+	
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Inject
+	EntityManager manager;
 	public boolean existe(Usuario usuario) {
-
-		EntityManager em = new JPAUtil().getEntityManager();
-		TypedQuery<Usuario> query = em
+		
+		TypedQuery<Usuario> query = manager
 				.createQuery("select u from Usuario u where u.email = :pEmail and u.senha = :pSenha", Usuario.class);
 
 		query.setParameter("pEmail", usuario.getEmail());
@@ -23,7 +31,7 @@ public class UsuarioDAO {
 			return false;
 		}
 
-		em.close();
+	
 
 		return true;
 	}

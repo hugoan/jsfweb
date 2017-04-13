@@ -33,13 +33,16 @@ public class LivroBean implements Serializable {
 	
 	@Inject
 	AutorDao autorDao;
+	
+	@Inject
+	FacesContext context;
 
 	@Transacional
 	public void gravar() {
 		System.out.println("Gravando livro " + livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
-			FacesContext.getCurrentInstance().addMessage("autor",
+			context.addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 		}
 
@@ -68,7 +71,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public void alteraLivro(Livro livro) {
-		this.livro = livro;
+		this.livro = this.livroDao.buscaPorId(livro.getId());
 	}
 
 	public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {
